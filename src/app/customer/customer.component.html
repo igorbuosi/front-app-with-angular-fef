@@ -1,0 +1,77 @@
+<mat-toolbar>
+    <span>
+        Clientes
+    </span>
+</mat-toolbar>
+<form>
+    <mat-form-field class="full-width">
+        <mat-label>Primeiro Nome: </mat-label>
+        <input 
+            [(ngModel)]="customer.firstNameCustomer"
+            name = "firstNameCustomer"
+            [formControl]="firstNameCustomer"
+            type="text" 
+            matInput 
+            placeholder="Digite seu primeiro nome" />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <mat-label>Último Nome: </mat-label>
+        <input 
+        [(ngModel)]="customer.lastNameCustomer"
+        name = "lastNameCustomer"
+        [formControl]="lastNameCustomer"
+        type="text" 
+        matInput 
+        placeholder="Digite seu último nome" />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <mat-label>CPF: </mat-label>
+        <input 
+        [(ngModel)]="customer.cpfCustomer"
+         name="cpfCustomer"
+         [formControl]="cpfCustomer"
+         required
+         matInput 
+         placeholder="Digite seu cpf Ex..000.000.000-00"
+         mask="000.000.000-00" />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <mat-label>Data de Nascimento: </mat-label>
+        <input 
+        [(ngModel)]="customer.birthdateCustomer"
+        name = "birthdateCustomer"
+        [formControl]="birthdateCustomer"
+        required        
+        type="date" 
+        matInput 
+        placeholder="Digite sua data de nascimento" />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <mat-label>Renda Mensal: R$ </mat-label>
+        <input 
+        [(ngModel)]="customer.monthlyIncomeCustomer"
+        name = "monthlyIncomeCustomer"
+        [formControl]="monthlyIncomeCustomer"        
+        type="number"
+        matInput 
+        placeholder="Digite sua renda mensal (R$)" />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <mat-label>Email: </mat-label>
+        <input 
+        [(ngModel)]="customer.emailCustomer"
+        name = "emailCustomer"
+        [formControl]="emailCustomer"  
+        type="email" matInput placeholder="Digite seu email" />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <mat-label>Senha: </mat-label>
+        <input 
+        [(ngModel)]="customer.passwordCustomer"
+        name = "passwordCustomer"
+        [formControl]="passwordCustomer" 
+        type="password" matInput placeholder="Digite sua senha" />
+    </mat-form-field>
+    <button (click)="createCustomer()" [disabled]="!validaCampos()" mat-raised-button color="primary">Salvar</button>
+    <button routerLink="../" class="fullWidth mat-elevation-z4" mat-stroked-button color="warn">Cancelar</button>
+</form>
