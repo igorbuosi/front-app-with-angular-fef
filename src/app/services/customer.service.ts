@@ -20,6 +20,10 @@ export class CustomerService {
     return this.http.post<Customer[]>(`${API_CONFIG.baseUrl}customer/insert`, customer);
   }
 
+  findByCpf(cpfCustomer : String) : Observable<Boolean>{
+    return this.http.get<Boolean>(`${API_CONFIG.baseUrl}customer/findCustomerByCpf/` + cpfCustomer);
+  }
+
 }
 
 

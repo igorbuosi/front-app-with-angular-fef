@@ -20,6 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CustomerComponent } from './customer/customer.component';
 import { CustomerService } from './services/customer.service';
 import { ToastrModule } from 'ngx-toastr';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask'
 
 
 @NgModule({
@@ -44,6 +45,8 @@ import { ToastrModule } from 'ngx-toastr';
     MatInputModule,
     AppRoutingModule,
     MatSnackBarModule,
+    NgxMaskDirective,
+    NgxMaskPipe,
     HttpClientModule,
     BrowserAnimationsModule, 
     DatePipe,
@@ -55,7 +58,8 @@ import { ToastrModule } from 'ngx-toastr';
   ],
   providers: [
     CustomerService,
-    DatePipe  
+    DatePipe,
+    provideNgxMask() 
   ],
   bootstrap: [AppComponent]
 })

@@ -4,6 +4,7 @@ import {FormBuilder, FormControl,FormGroup,Validators} from '@angular/forms';
 import { Customer } from '../models/customer';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-customer',
@@ -12,6 +13,10 @@ import { ToastrService } from 'ngx-toastr';
 })
 
 export class CustomerComponent implements OnInit { 
+
+  success: boolean = false;
+  errors! : String[];
+
   customer: Customer = {
     idCustomer: '',
     firstNameCustomer: '',
@@ -36,12 +41,11 @@ export class CustomerComponent implements OnInit {
     private service: CustomerService,
     private toast:    ToastrService,
     private router:Router
-
   ){}
   
   ngOnInit(): void {}
 
-  createCustomer():void{
+  /*createCustomer():void{
     this.service.save(this.customer).subscribe(()=>{
       this.toast.success('Cliente cadastrado com sucesso','Cadastro');
     }, ex => {
@@ -53,6 +57,47 @@ export class CustomerComponent implements OnInit {
         this.toast.error(ex.error.message);
       }
     })
+  }*/
+
+  createCustomer() {
+    const datePipe = new DatePipe('en-US');
+    this.customer.birthdateCustomer = datePipe.transform(
+      this.customer.birthdateCustomer, 'dd/MM/yyyy');
+    
+    this.service.save(this.customer).subscribe({next: response => {
+      this.success = true;
+      this.errors = [];    
+    }, error: ex => {
+      if (ex.error.errors) {
+        this.errors = ex.error.errors;
+        this.success = false;
+        ex.error.errors.forEach((element:any) => {         
+        });
+      } else {
+          this.success = false;
+          this.errors = ex.error.errors;        
+      }
+    }})
+  }
+
+  verificaCpf(): void{
+    this.service.findByCpf(this.cpfCustomer.value)
+      .subscribe((response) => {
+        if (response){
+          this.toast.error('CPF já cadastrado no banco','Erro');
+          //alert("CPF já cadastrado no banco de dados !");
+          this.cpfCustomer.setValue("");
+          this.setFocusCampo("cpfCustomer");
+        }else{
+          console.log("Não existe");
+        }
+      });
+  }
+
+  setFocusCampo(nomeFormulario : String) {
+    //console.log("teste");
+    const input = document.querySelector('[formControlName="'+ nomeFormulario + '"]') as HTMLInputElement;
+    input.focus;
   }
 
   validaCampos(): boolean {
