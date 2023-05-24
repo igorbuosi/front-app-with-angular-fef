@@ -11,6 +11,12 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { DatePipe } from '@angular/common';
+import {MatTableModule} from '@angular/material/table';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatCardModule} from '@angular/material/card';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import {MatDialogModule} from '@angular/material/dialog';
+
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,13 +26,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CustomerComponent } from './customer/customer.component';
 import { CustomerService } from './services/customer.service';
 import { ToastrModule } from 'ngx-toastr';
-import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask'
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { ConfirmationDialogComponent } from './componentes/confirmation/confirmation-dialog/confirmation-dialog.component'
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CustomerComponent
+    CustomerComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -38,9 +46,14 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask'
     HttpClientModule,
     //Angular Material
     MatSlideToggleModule,
+    MatDialogModule,
+    MatCardModule,
+    MatTabsModule,
+    MatTableModule,
     MatButtonModule,   
     MatDividerModule, 
     MatToolbarModule,
+    MatPaginatorModule,
     MatIconModule,
     MatInputModule,
     AppRoutingModule,
@@ -59,7 +72,8 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask'
   providers: [
     CustomerService,
     DatePipe,
-    provideNgxMask() 
+    provideNgxMask(),
+    MatDialogModule
   ],
   bootstrap: [AppComponent]
 })
