@@ -28,7 +28,13 @@ import { CustomerService } from './services/customer.service';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { ConfirmationDialogComponent } from './componentes/confirmation/confirmation-dialog/confirmation-dialog.component'
+import {MatGridListModule} from '@angular/material/grid-list';
+import { format } from 'date-fns';
 
+const formatCustom = {
+  provide: 'DATE_FORMAT',
+  useValue: 'yyyy-MM-dd',
+};
 
 @NgModule({
   declarations: [
@@ -42,6 +48,7 @@ import { ConfirmationDialogComponent } from './componentes/confirmation/confirma
     //Formularios
     FormsModule,
     ReactiveFormsModule,
+    MatGridListModule,
     //Requisicoes
     HttpClientModule,
     //Angular Material
@@ -73,8 +80,13 @@ import { ConfirmationDialogComponent } from './componentes/confirmation/confirma
     CustomerService,
     DatePipe,
     provideNgxMask(),
-    MatDialogModule
+    MatDialogModule,
+    formatCustom
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+
+
+
+}

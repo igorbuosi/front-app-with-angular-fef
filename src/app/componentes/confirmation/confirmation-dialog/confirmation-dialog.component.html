@@ -5,5 +5,4 @@
   <div mat-dialog-actions align="center">
     <button mat-raised-button color="primary" *ngIf="data.button1" (click)="onConfirm(true)">{{data.button1}}</button>
     <button mat-raised-button [color]="data.button1 ? 'warn' : 'primary'" (click)="onConfirm(false)">{{data.button2}}</button>
-
   </div>
